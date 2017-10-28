@@ -40,4 +40,5 @@ for message in consumer:
     # message value and key are raw bytes -- decode if necessary!
     # e.g., for unicode: `message.value.decode('utf-8')`
     print ("key=%s value=%s" % (message.key, message.value))
+    print ("sleeping for: " +str(sleeptime))
     time.sleep(sleeptime)
