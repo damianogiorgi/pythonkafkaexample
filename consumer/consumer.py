@@ -10,10 +10,11 @@ sleeptime = float(os.environ.get('CONSUMER_SLEEP_TIME'))
 print ("Wait 5s for kafka to settle...")
 time.sleep(5)
 print ("Done")
+clientid= "consumer" + str(time.time())
 # To consume latest messages and auto-commit offsets
-consumer = KafkaConsumer(client_id="consumer" + str(time.time()),topic_prefix + 'default',
+consumer = KafkaConsumer(topic_prefix + 'default',
                          group_id='my-group',
-                         bootstrap_servers=brokers, fetch_max_wait_ms=50, auto_commit_interval_ms=100) #,
+                         bootstrap_servers=brokers, fetch_max_wait_ms=50, auto_commit_interval_ms=100, client_id=clientid) #,
 #                         security_protocol='SSL',
 #                         ssl_context=ssl_context)
 print ('Start consuming')
