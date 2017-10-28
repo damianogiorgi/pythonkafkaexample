@@ -38,7 +38,7 @@ producer = KafkaProducer(bootstrap_servers=brokers)#,
 # Asynchronous by default
 i=0
 while True:
-
+	print("Sending message " + str(i))
 	future = producer.send(topic_prefix + 'default', b'Message: ' + str(i) )
 	# Block for 'synchronous' sends
 	try:
