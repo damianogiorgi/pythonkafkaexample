@@ -1,0 +1,31 @@
+version: '2'
+services:
+  producer:
+    image: "damiano7pixel/pykafkaproducersample"
+    environment: 
+     - KAFKA_BROKERS=kafka
+     - KAFKA_TOPIC_PREFIX=message 
+     - PRODUCER_SLEEP_TIME=0.5
+    tty: true
+    depends_on: 
+     - kafka
+    build: producer
+  consumer:
+    environment:
+     - KAFKA_BROKERS=kafka
+     - KAFKA_TOPIC_PREFIX=message 
+     - CONSUMER_SLEEP_TIME=1
+#    tty: true
+    image: "damiano7pixel/pykafkaconsumersample"
+    build: consumer
+    depends_on:
+     - kafka
+  zookeeper: 
+    image: zookeeper:3.4
+  kafka: 
+    image: ches/kafka
+    environment: 
+     - ZOOKEEPER_IP=zookeeper
+    depends_on: 
+     - zookeeper
+  
