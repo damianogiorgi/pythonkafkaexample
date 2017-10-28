@@ -5,7 +5,7 @@ services:
     environment: 
      - KAFKA_BROKERS=kafka
      - KAFKA_TOPIC_PREFIX=message 
-     - PRODUCER_SLEEP_TIME=0.5
+     - PRODUCER_SLEEP_TIME=0.1
     tty: true
     depends_on: 
      - kafka
@@ -14,7 +14,7 @@ services:
     environment:
      - KAFKA_BROKERS=kafka
      - KAFKA_TOPIC_PREFIX=message 
-     - CONSUMER_SLEEP_TIME=1
+     - CONSUMER_SLEEP_TIME=0.2
 #    tty: true
     image: "damiano7pixel/pykafkaconsumersample"
     build: consumer

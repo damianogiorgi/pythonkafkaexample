@@ -14,14 +14,15 @@ clientid= "consumer" + str(time.time())
 # To consume latest messages and auto-commit offsets
 consumer = KafkaConsumer(topic_prefix + 'default',
                          group_id='my-group',
-                         bootstrap_servers=brokers, fetch_max_wait_ms=50, auto_commit_interval_ms=100, client_id=clientid) #,
+                         bootstrap_servers=brokers,
+                         client_id=clientid) #,
 #                         security_protocol='SSL',
 #                         ssl_context=ssl_context)
 print ('Start consuming')
 for message in consumer:
     # message value and key are raw bytes -- decode if necessary!
     # e.g., for unicode: `message.value.decode('utf-8')`
-    print ("Message received:", message.value)
+    print ("Client: " + clientid + " Message received:", message.value)
     sys.stdout.flush()
-    print ("sleeping for: " +str(sleeptime))
+    #print ("sleeping for: " +str(sleeptime))
     time.sleep(sleeptime)
